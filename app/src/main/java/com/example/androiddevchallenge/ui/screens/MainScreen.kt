@@ -58,7 +58,7 @@ import com.example.androiddevchallenge.ui.utils.BackgroundLayer
 
 @Composable
 fun MainScreen(
-    favouriteCollection: List<Pair<Int, String>>,
+    favouriteCollection: Pair<List<Pair<Int, String>>, List<Pair<Int, String>>>,
     alignYourBody: List<Pair<Int, String>>,
     alignYourMind: List<Pair<Int, String>>
 )  {
@@ -74,10 +74,15 @@ fun MainScreen(
 
             Row {
                 HomeSection(title ="Favourite Collections") {
-                    // Splitn in two
+                    val (firstRow, secondRow) = favouriteCollection
                     LazyRow() {
-                        items(favouriteCollection) { (drawable, label) ->
-                            Collection(imageId = drawable, label = label)
+                        items(firstRow, key = { (_, l) -> l }) { (drawable, label) ->
+                            FavoriteCollection(modifier = Modifier.padding(end = smSpacing), imageId = drawable, label = label)
+                        }
+                    }
+                    LazyRow(modifier = Modifier.padding(top = smSpacing)) {
+                        items(secondRow, key = { (_, l) -> l }) { (drawable, label) ->
+                            FavoriteCollection(modifier = Modifier.padding(end = smSpacing), imageId = drawable, label = label)
                         }
                     }
                 }
@@ -86,7 +91,7 @@ fun MainScreen(
                 HomeSection(title ="Align your body") {
                     LazyRow(modifier = Modifier.height(112.dp)){
                         items(alignYourBody) { (drawable, label) ->
-                            Collection(imageId = drawable, label = label)
+                            Collection(modifier = Modifier.padding(end = smSpacing), imageId = drawable, label = label)
                         }
                     }
                 }
@@ -95,7 +100,7 @@ fun MainScreen(
                 HomeSection(title ="Align your mind") {
                     LazyRow(modifier = Modifier.height(112.dp)){
                         items(alignYourMind) { (drawable, label) ->
-                            Collection(imageId = drawable, label = label)
+                            Collection(modifier = Modifier.padding(end = smSpacing), imageId = drawable, label = label)
                         }
                     }
                 }
@@ -164,12 +169,12 @@ fun HomeSection(title: String, content: @Composable () -> Unit) {
 
 
 @Composable
-fun FavoriteCollection(@DrawableRes imageId: Int, label: String) {
+fun FavoriteCollection(modifier: Modifier = Modifier, @DrawableRes imageId: Int, label: String) {
     val smCorners = 8.dp
     val cardHeight = 56.dp
     val img = painterResource(id = imageId)
     Row(
-        modifier = Modifier
+        modifier = modifier
             .background(white)
             .width(192.dp)
             .height(cardHeight)
@@ -191,13 +196,13 @@ fun FavoriteCollection(@DrawableRes imageId: Int, label: String) {
 
 
 @Composable
-fun Collection(@DrawableRes imageId: Int, label: String) {
+fun Collection(modifier: Modifier = Modifier, @DrawableRes imageId: Int, label: String) {
     val smCorners = 8.dp
     val cardHeight = 56.dp
     val img = painterResource(id = imageId)
 
     Column(
-        modifier = Modifier.wrapContentSize()
+        modifier = modifier.wrapContentSize()
     ) {
         Image(
             modifier =
