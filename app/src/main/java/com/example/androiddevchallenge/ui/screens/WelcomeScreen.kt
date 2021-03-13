@@ -17,6 +17,7 @@ import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.ui.theme.PrimaryButton
 import com.example.androiddevchallenge.ui.theme.SecondaryButton
 import com.example.androiddevchallenge.ui.theme.lgSpacing
+import com.example.androiddevchallenge.ui.theme.mdSpacing
 import com.example.androiddevchallenge.ui.theme.smSpacing
 import com.example.androiddevchallenge.ui.utils.BackgroundImage
 
@@ -39,10 +40,10 @@ fun WelcomeScreen()  {
                 Image(painter = logoPainter, contentDescription = "App's logo")
             }
             RowItem(Modifier.padding(0.dp, lgSpacing, 0.dp, 0.dp)) {
-                PrimaryButton(modifier = Modifier.padding(horizontal = 8.dp), text = "Sign up", onClick = {})
+                PrimaryButton(modifier = Modifier.padding(horizontal = mdSpacing), text = "Sign up", onClick = {})
             }
             RowItem(Modifier.padding(0.dp, smSpacing, 0.dp, 0.dp)) {
-                SecondaryButton(modifier = Modifier.padding(horizontal = 8.dp), text = "Log in", onClick = {})
+                SecondaryButton(modifier = Modifier.padding(horizontal = mdSpacing), text = "Log in", onClick = {})
             }
         }
     }
