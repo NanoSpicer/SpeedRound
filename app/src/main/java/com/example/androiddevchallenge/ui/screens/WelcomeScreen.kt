@@ -22,7 +22,7 @@ import com.example.androiddevchallenge.ui.theme.smSpacing
 import com.example.androiddevchallenge.ui.utils.BackgroundImage
 
 @Composable
-fun WelcomeScreen()  {
+fun WelcomeScreen(nextScreen: () -> Unit = {})  {
     val logo = if(isSystemInDarkTheme()) R.drawable.ic_dark_logo else R.drawable.ic_light_logo
     val background = if(isSystemInDarkTheme()) R.drawable.bg_dark_welcome else R.drawable.bg_light_welcome
     val logoPainter = painterResource(id = logo)
@@ -40,10 +40,10 @@ fun WelcomeScreen()  {
                 Image(painter = logoPainter, contentDescription = "App's logo")
             }
             RowItem(Modifier.padding(0.dp, lgSpacing, 0.dp, 0.dp)) {
-                PrimaryButton(modifier = Modifier.padding(horizontal = mdSpacing), text = "Sign up", onClick = {})
+                PrimaryButton(modifier = Modifier.padding(horizontal = mdSpacing), text = "Sign up", onClick = {  })
             }
             RowItem(Modifier.padding(0.dp, smSpacing, 0.dp, 0.dp)) {
-                SecondaryButton(modifier = Modifier.padding(horizontal = mdSpacing), text = "Log in", onClick = {})
+                SecondaryButton(modifier = Modifier.padding(horizontal = mdSpacing), text = "Log in", onClick = nextScreen)
             }
         }
     }

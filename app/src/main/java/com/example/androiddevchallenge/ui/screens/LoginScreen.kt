@@ -17,7 +17,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.ui.theme.MySoothePassword
-import com.example.androiddevchallenge.ui.theme.MySootheTextField
+import com.example.androiddevchallenge.ui.theme.MySootheEmail
 import com.example.androiddevchallenge.ui.theme.PrimaryButton
 import com.example.androiddevchallenge.ui.theme.TextBody1
 import com.example.androiddevchallenge.ui.theme.TextH1
@@ -41,7 +41,7 @@ private fun RowItem(
 ) { content() }
 
 @Composable
-fun LoginScreen()  {
+fun LoginScreen(nextScreen: () -> Unit = {})  {
     val background = if(isSystemInDarkTheme()) R.drawable.bg_dark_login else R.drawable.bg_light_login
 
     BackgroundImage(background) {
@@ -52,14 +52,14 @@ fun LoginScreen()  {
             RowItem { TextH1(text = "LOG IN") }
 
             RowItem(Modifier.padding(0.dp, lgSpacing, 0.dp, 0.dp)) {
-                MySootheTextField(modifier = Modifier.padding(horizontal = mdSpacing), label ="Email address"){}
+                MySootheEmail(modifier = Modifier.padding(horizontal = mdSpacing), label ="Email address"){}
             }
             RowItem(Modifier.padding(0.dp, smSpacing, 0.dp, 0.dp)) {
                 MySoothePassword(modifier = Modifier.padding(horizontal = mdSpacing), label ="Password"){}
             }
 
             RowItem(Modifier.padding(0.dp, smSpacing, 0.dp, 0.dp)) {
-                PrimaryButton(modifier = Modifier.padding(horizontal = mdSpacing), text = "Log in", onClick = {})
+                PrimaryButton(modifier = Modifier.padding(horizontal = mdSpacing), text = "Log in", onClick = nextScreen)
             }
 
             RowItem(modifier = Modifier.height(lgSpacing), vAlign = Alignment.Bottom) {
