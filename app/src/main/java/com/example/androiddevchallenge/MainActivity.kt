@@ -18,12 +18,17 @@ package com.example.androiddevchallenge
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.androiddevchallenge.ui.screens.LoginScreen
@@ -32,11 +37,58 @@ import com.example.androiddevchallenge.ui.screens.WelcomeScreen
 import com.example.androiddevchallenge.ui.theme.MySootheTheme
 
 class MainActivity : AppCompatActivity() {
+    enum class Screen {
+        Welcome, Login, Main
+    }
+
+    private val favoriteLabels = Pair(
+        listOf(
+            // Not found on the webpage!!! Reusing 13
+            R.drawable._13 to "Short mantras",
+            R.drawable._9 to "Stress and anxiety",
+            R.drawable._13 to "Overwhelmed",
+        ),
+        listOf(
+            R.drawable._12 to "Nature\nmeditations",
+            R.drawable._14 to "Self-massage",
+            R.drawable._8 to "Nightly wind\ndown",
+        )
+    )
+
+    private val bodyLabels = listOf(
+        R.drawable._2  to "Inversions",
+        R.drawable._1 to "Quick yoga",
+        R.drawable._3 to "Stretching",
+        R.drawable._6 to "Tabata",
+        R.drawable._16 to "HIIT",
+        R.drawable._7 to "Pre-natal yoga"
+    )
+
+    private val mindLabels = listOf(
+        R.drawable._5 to "Meditate",
+        R.drawable._17 to "With kids",
+        R.drawable._10 to "Aromatherapy",
+        R.drawable._15 to "On the go",
+        R.drawable._4 to "With pets",
+        R.drawable._11 to "High stress"
+    )
+
+    private val screens = Screen.values()
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            var currentScreen by remember { mutableStateOf(2) }
             MySootheTheme {
-                MainScreen(emptyList(), emptyList(), emptyList())
+                val screen = screens[currentScreen]
+                Crossfade(targetState = currentScreen) {
+                    when(screen) {
+                        Screen.Welcome -> WelcomeScreen { currentScreen = 1 }
+                        Screen.Login -> LoginScreen { currentScreen = 2 }
+                        Screen.Main -> MainScreen(favoriteLabels, bodyLabels, mindLabels)
+                    }
+                }
             }
         }
     }
