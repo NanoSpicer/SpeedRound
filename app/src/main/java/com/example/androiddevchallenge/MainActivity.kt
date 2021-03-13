@@ -28,6 +28,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -79,15 +80,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            var currentScreen by remember { mutableStateOf(2) }
+            var currentScreen by rememberSaveable { mutableStateOf(2) }
             MySootheTheme {
-                val screen = screens[currentScreen]
-                Crossfade(targetState = currentScreen) {
-                    when(screen) {
-                        Screen.Welcome -> WelcomeScreen { currentScreen = 1 }
-                        Screen.Login -> LoginScreen { currentScreen = 2 }
-                        Screen.Main -> MainScreen(favoriteLabels, bodyLabels, mindLabels)
-                    }
+                when(screens[currentScreen]) {
+                    Screen.Welcome -> WelcomeScreen { currentScreen = 1 }
+                    Screen.Login -> LoginScreen { currentScreen = 2 }
+                    Screen.Main -> MainScreen(favoriteLabels, bodyLabels, mindLabels)
                 }
             }
         }
