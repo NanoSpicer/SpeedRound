@@ -83,7 +83,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
         setContent {
-            var currentScreen by rememberSaveable { mutableStateOf(2) }
+            var currentScreen by rememberSaveable { mutableStateOf(0) }
             MySootheTheme {
                 ProvideWindowInsets {
                     when(screens[currentScreen]) {
