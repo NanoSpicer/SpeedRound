@@ -13,12 +13,16 @@ import androidx.compose.ui.res.painterResource
 
 
 @Composable
-fun BackgroundImage(@DrawableRes backgroundImageId: Int, modifier: Modifier = Modifier,content: @Composable () -> Unit) {
-    val bgPainter = painterResource(id = backgroundImageId)
+fun BackgroundLayer(modifier: Modifier = Modifier, @DrawableRes backgroundImageId: Int? = null, content: @Composable () -> Unit) {
+    val bgPainter = backgroundImageId?.let { painterResource(id = it) }
     Box(
-        modifier = modifier.fillMaxSize().background(MaterialTheme.colors.background)
+        modifier = modifier
+            .fillMaxSize()
+            .background(MaterialTheme.colors.background)
     ) {
-        Image(modifier = modifier.fillMaxSize(), painter = bgPainter, contentDescription = "Background of Welcome screen", contentScale = ContentScale.FillBounds)
+        if(bgPainter != null) {
+            Image(modifier = modifier.fillMaxSize(), painter = bgPainter, contentDescription = "Background of Welcome screen", contentScale = ContentScale.FillBounds)
+        }
         content()
     }
 }
