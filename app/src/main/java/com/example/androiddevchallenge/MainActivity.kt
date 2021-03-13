@@ -32,10 +32,12 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.core.view.WindowCompat
 import com.example.androiddevchallenge.ui.screens.LoginScreen
 import com.example.androiddevchallenge.ui.screens.MainScreen
 import com.example.androiddevchallenge.ui.screens.WelcomeScreen
 import com.example.androiddevchallenge.ui.theme.MySootheTheme
+import dev.chrisbanes.accompanist.insets.ProvideWindowInsets
 
 class MainActivity : AppCompatActivity() {
     enum class Screen {
@@ -79,13 +81,16 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        WindowCompat.setDecorFitsSystemWindows(window, false)
         setContent {
             var currentScreen by rememberSaveable { mutableStateOf(2) }
             MySootheTheme {
-                when(screens[currentScreen]) {
-                    Screen.Welcome -> WelcomeScreen { currentScreen = 1 }
-                    Screen.Login -> LoginScreen { currentScreen = 2 }
-                    Screen.Main -> MainScreen(favoriteLabels, bodyLabels, mindLabels)
+                ProvideWindowInsets {
+                    when(screens[currentScreen]) {
+                        Screen.Welcome -> WelcomeScreen { currentScreen = 1 }
+                        Screen.Login -> LoginScreen { currentScreen = 2 }
+                        Screen.Main -> MainScreen(favoriteLabels, bodyLabels, mindLabels)
+                    }
                 }
             }
         }

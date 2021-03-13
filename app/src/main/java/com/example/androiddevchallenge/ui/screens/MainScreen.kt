@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -36,6 +37,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.clipToBounds
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -54,6 +56,10 @@ import com.example.androiddevchallenge.ui.theme.smSpacing
 import com.example.androiddevchallenge.ui.theme.white
 import com.example.androiddevchallenge.ui.theme.white800
 import com.example.androiddevchallenge.ui.utils.BackgroundLayer
+import dev.chrisbanes.accompanist.insets.navigationBarsHeight
+import dev.chrisbanes.accompanist.insets.navigationBarsPadding
+import dev.chrisbanes.accompanist.insets.navigationBarsWithImePadding
+import dev.chrisbanes.accompanist.insets.statusBarsHeight
 
 @Composable
 fun MainScreen(
@@ -67,6 +73,7 @@ fun MainScreen(
                 .fillMaxSize()
                 .padding(mdSpacing),
         ) {
+            Spacer(modifier = Modifier.statusBarsHeight())
             Row {
                 MySootheSearch(label = "Search", onTextChange = { })
             }
@@ -113,6 +120,8 @@ fun MainScreen(
 
             Box {
                 BottomNavigation(
+                    // the bottom bars + the desired bottom app bar height
+                    modifier = Modifier.navigationBarsHeight(additional = 56.dp),
                     elevation = 8.dp,
                     backgroundColor = MaterialTheme.colors.background
                 ) {
@@ -120,6 +129,7 @@ fun MainScreen(
                     val acc = painterResource(id = R.drawable.ic_account)
 
                     BottomNavigationItem(
+                        modifier = Modifier.navigationBarsPadding(),
                         icon = { Icon(spa, "Go to home page", modifier = Modifier.size(18.dp)) },
                         label = { TextCaption(text = "Home") },
                         selected = true,
@@ -127,6 +137,7 @@ fun MainScreen(
                     )
 
                     BottomNavigationItem(
+                        modifier = Modifier.navigationBarsPadding(),
                         icon = { Icon(acc, "Go to your account", modifier = Modifier.size(18.dp)) },
                         label = { TextCaption(text = "Profile") },
                         selected = true,
