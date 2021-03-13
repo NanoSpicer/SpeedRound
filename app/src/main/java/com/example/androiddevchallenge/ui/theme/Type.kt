@@ -25,6 +25,7 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.font.toFontFamily
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 import com.example.androiddevchallenge.R
 import java.util.*
@@ -51,12 +52,14 @@ val lightTypography = Typography(
     ),
     // CAPS
     h2 = TextStyle(
+        color = taupe800,
         fontFamily = kulimParkRegular,
         fontWeight = FontWeight.Normal,
         fontSize = 15.sp,
         letterSpacing = 1.15.sp,
     ),
     h3 = TextStyle(
+        color = gray800,
         fontFamily = latoBold,
         fontWeight = FontWeight.Normal,
         fontSize = 14.sp,
@@ -94,12 +97,14 @@ val darkTypography = Typography(
     ),
     // CAPS
     h2 = TextStyle(
+        color = taupe100,
         fontFamily = kulimParkRegular,
         fontWeight = FontWeight.Normal,
         fontSize = 15.sp,
         letterSpacing = 1.15.sp,
     ),
     h3 = TextStyle(
+        color = white800,
         fontFamily = latoBold,
         fontWeight = FontWeight.Normal,
         fontSize = 14.sp,
@@ -130,7 +135,7 @@ val darkTypography = Typography(
 
 @Composable fun TextH1(modifier: Modifier = Modifier, text: String) = Text(modifier = modifier, text = text, style = MaterialTheme.typography.h1)
 @Composable fun TextH2(modifier: Modifier = Modifier, text: String) = Text(modifier = modifier, text = text.CAPS, style = MaterialTheme.typography.h2)
-@Composable fun TextH3(modifier: Modifier = Modifier, text: String) = Text(modifier = modifier, text = text, style = MaterialTheme.typography.h3)
+@Composable fun TextH3(modifier: Modifier = Modifier, text: String, textAlign: TextAlign? = null) = Text(modifier = modifier, text = text, style = MaterialTheme.typography.h3, textAlign = textAlign)
 @Composable fun TextBody1(modifier: Modifier = Modifier, text: String, style: TextStyle = MaterialTheme.typography.body1) = Text(modifier = modifier, text = text, style = style)
 @Composable fun TextCaption(modifier: Modifier = Modifier, text: String) = Text(modifier = modifier, text = text.CAPS, style = MaterialTheme.typography.caption)
 @Composable fun TextButton(modifier: Modifier = Modifier, text: String) = Text(modifier = modifier, text = text.CAPS, style = MaterialTheme.typography.button)
