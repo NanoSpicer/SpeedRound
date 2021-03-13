@@ -1,25 +1,21 @@
 package com.example.androiddevchallenge.ui.screens
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Button
-import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.androiddevchallenge.R
-import com.example.androiddevchallenge.ui.theme.MySootheTheme
-import com.example.androiddevchallenge.ui.theme.TextButton
+import com.example.androiddevchallenge.ui.theme.PrimaryButton
+import com.example.androiddevchallenge.ui.theme.SecondaryButton
 import com.example.androiddevchallenge.ui.theme.lgSpacing
 import com.example.androiddevchallenge.ui.theme.smSpacing
 import com.example.androiddevchallenge.ui.utils.BackgroundImage
@@ -43,14 +39,10 @@ fun WelcomeScreen()  {
                 Image(painter = logoPainter, contentDescription = "App's logo")
             }
             RowItem(Modifier.padding(0.dp, lgSpacing, 0.dp, 0.dp)) {
-                Button(onClick = {}) {
-                    TextButton(text = "sign up")
-                }
+                PrimaryButton(modifier = Modifier.padding(horizontal = 8.dp), text = "Sign up", onClick = {})
             }
             RowItem(Modifier.padding(0.dp, smSpacing, 0.dp, 0.dp)) {
-                Button(onClick = {}) {
-                    TextButton(text = "log in")
-                }
+                SecondaryButton(modifier = Modifier.padding(horizontal = 8.dp), text = "Log in", onClick = {})
             }
         }
     }
