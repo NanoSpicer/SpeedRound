@@ -28,19 +28,13 @@ import androidx.compose.ui.text.font.toFontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 import com.example.androiddevchallenge.R
-import java.util.*
-
+import java.util.Locale
 
 val kulimParkLight = Font(R.font.kulimpark_light).toFontFamily()
 val kulimParkRegular = Font(R.font.kulimpark_regular).toFontFamily()
 val latoBold = Font(R.font.lato_bold).toFontFamily()
 val latoRegular = Font(R.font.lato_regular).toFontFamily()
 // Set of Material typography styles to start with
-
-
-
-
-
 
 val lightTypography = Typography(
     h1 = TextStyle(
@@ -86,7 +80,6 @@ val lightTypography = Typography(
     )
 )
 
-
 val darkTypography = Typography(
     h1 = TextStyle(
         color = taupe100,
@@ -131,8 +124,6 @@ val darkTypography = Typography(
     )
 )
 
-
-
 @Composable fun TextH1(modifier: Modifier = Modifier, text: String) = Text(modifier = modifier, text = text, style = MaterialTheme.typography.h1)
 @Composable fun TextH2(modifier: Modifier = Modifier, text: String) = Text(modifier = modifier, text = text.CAPS, style = MaterialTheme.typography.h2)
 @Composable fun TextH3(modifier: Modifier = Modifier, text: String, textAlign: TextAlign? = null) = Text(modifier = modifier, text = text, style = MaterialTheme.typography.h3, textAlign = textAlign)
@@ -141,4 +132,3 @@ val darkTypography = Typography(
 @Composable fun TextButton(modifier: Modifier = Modifier, text: String) = Text(modifier = modifier, text = text.CAPS, style = MaterialTheme.typography.button)
 
 private val String.CAPS get() = toUpperCase(Locale.ROOT)
-

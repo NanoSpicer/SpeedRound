@@ -18,19 +18,11 @@ package com.example.androiddevchallenge
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.animation.Crossfade
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.view.WindowCompat
 import com.example.androiddevchallenge.ui.screens.LoginScreen
@@ -59,7 +51,7 @@ class MainActivity : AppCompatActivity() {
     )
 
     private val bodyLabels = listOf(
-        R.drawable._2  to "Inversions",
+        R.drawable._2 to "Inversions",
         R.drawable._1 to "Quick yoga",
         R.drawable._3 to "Stretching",
         R.drawable._6 to "Tabata",
@@ -78,7 +70,6 @@ class MainActivity : AppCompatActivity() {
 
     private val screens = Screen.values()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
@@ -86,7 +77,7 @@ class MainActivity : AppCompatActivity() {
             var currentScreen by rememberSaveable { mutableStateOf(0) }
             MySootheTheme {
                 ProvideWindowInsets {
-                    when(screens[currentScreen]) {
+                    when (screens[currentScreen]) {
                         Screen.Welcome -> WelcomeScreen { currentScreen = 1 }
                         Screen.Login -> LoginScreen { currentScreen = 2 }
                         Screen.Main -> MainScreen(favoriteLabels, bodyLabels, mindLabels)
@@ -96,7 +87,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 }
-
 
 @Preview("Light Theme", widthDp = 360, heightDp = 640)
 @Composable

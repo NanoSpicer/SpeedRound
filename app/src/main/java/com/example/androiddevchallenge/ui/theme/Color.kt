@@ -20,13 +20,12 @@ import androidx.compose.ui.graphics.Color
 // Light colors
 val gray900 = Color(0xFF333333)
 val gray800 = Color(0xCC333333) // 0xCC => 80%
-val white800 =Color(0xCCFFFFFF) // 0xCC => 80%
+val white800 = Color(0xCCFFFFFF) // 0xCC => 80%
 val taupe100 = Color(0xFFF0EAE2)
 val rust600 = Color(0xFF886363)
 val white = Color(0xFFFFFFFF)
 val white850 = Color(0xD9FFFFFF)
 val taupe800 = Color(0xFF655454)
-
 
 // Dark colors
 
