@@ -19,7 +19,7 @@ import com.example.androiddevchallenge.ui.theme.SecondaryButton
 import com.example.androiddevchallenge.ui.theme.lgSpacing
 import com.example.androiddevchallenge.ui.theme.mdSpacing
 import com.example.androiddevchallenge.ui.theme.smSpacing
-import com.example.androiddevchallenge.ui.utils.BackgroundImage
+import com.example.androiddevchallenge.ui.utils.BackgroundLayer
 
 @Composable
 fun WelcomeScreen(nextScreen: () -> Unit = {})  {
@@ -31,7 +31,7 @@ fun WelcomeScreen(nextScreen: () -> Unit = {})  {
         content()
     }
 
-    BackgroundImage(background) {
+    BackgroundLayer(backgroundImageId = background) {
         Column(
             modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.Center

@@ -1,6 +1,5 @@
 package com.example.androiddevchallenge.ui.screens
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -26,7 +25,7 @@ import com.example.androiddevchallenge.ui.theme.mdSpacing
 import com.example.androiddevchallenge.ui.theme.smSpacing
 import com.example.androiddevchallenge.ui.theme.taupe100
 import com.example.androiddevchallenge.ui.theme.taupe800
-import com.example.androiddevchallenge.ui.utils.BackgroundImage
+import com.example.androiddevchallenge.ui.utils.BackgroundLayer
 
 
 @Composable
@@ -44,7 +43,7 @@ private fun RowItem(
 fun LoginScreen(nextScreen: () -> Unit = {})  {
     val background = if(isSystemInDarkTheme()) R.drawable.bg_dark_login else R.drawable.bg_light_login
 
-    BackgroundImage(background) {
+    BackgroundLayer(backgroundImageId = background) {
         Column(
             modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.Center
