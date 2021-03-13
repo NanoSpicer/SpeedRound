@@ -131,7 +131,7 @@ val darkTypography = Typography(
 @Composable fun TextH1(modifier: Modifier = Modifier, text: String) = Text(modifier = modifier, text = text, style = MaterialTheme.typography.h1)
 @Composable fun TextH2(modifier: Modifier = Modifier, text: String) = Text(modifier = modifier, text = text.CAPS, style = MaterialTheme.typography.h2)
 @Composable fun TextH3(modifier: Modifier = Modifier, text: String) = Text(modifier = modifier, text = text, style = MaterialTheme.typography.h3)
-@Composable fun TextBody1(modifier: Modifier = Modifier, text: String) = Text(modifier = modifier, text = text, style = MaterialTheme.typography.body1)
+@Composable fun TextBody1(modifier: Modifier = Modifier, text: String, style: TextStyle = MaterialTheme.typography.body1) = Text(modifier = modifier, text = text, style = style)
 @Composable fun TextCaption(modifier: Modifier = Modifier, text: String) = Text(modifier = modifier, text = text.CAPS, style = MaterialTheme.typography.caption)
 @Composable fun TextButton(modifier: Modifier = Modifier, text: String) = Text(modifier = modifier, text = text.CAPS, style = MaterialTheme.typography.button)
 
