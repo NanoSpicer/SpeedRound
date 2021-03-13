@@ -69,10 +69,14 @@ private fun MySootheTextField(
     leadingIcon: @Composable () -> Unit = {},
 ) {
     var textVal by remember { mutableStateOf(defaultText) }
-    val colors = TextFieldDefaults.textFieldColors(
-        textColor = if(isSystemInDarkTheme()) white800 else gray800,
-        backgroundColor = if(isSystemInDarkTheme()) gray800 else white800
-    )
+    val colors = if(isSystemInDarkTheme()) {
+        TextFieldDefaults.textFieldColors()
+    }else {
+        TextFieldDefaults.textFieldColors(
+            textColor = gray800,
+            backgroundColor = white800
+        )
+    }
     TextField(
         modifier = modifier
             .height(56.dp)
@@ -102,7 +106,9 @@ fun MySootheEmail(modifier: Modifier = Modifier, label: String, defaultText: Str
 fun MySootheSearch(modifier: Modifier = Modifier, label: String, defaultText: String = "", onTextChange: (String) -> Unit) {
     val search = painterResource(id = R.drawable.ic_search)
     MySootheTextField(
-        modifier = modifier.height(56.dp).fillMaxWidth(),
+        modifier = modifier
+            .height(56.dp)
+            .fillMaxWidth(),
         label = label,
         leadingIcon = { Icon(search, "Search icon", modifier = Modifier.size(18.dp)) },
         onTextChange = { onTextChange(it) }
