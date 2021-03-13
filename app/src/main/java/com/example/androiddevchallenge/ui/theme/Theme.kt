@@ -43,7 +43,8 @@ private val DarkColorPalette = lightColors(
     secondary = rust300,
     surface = white150,
     onSecondary = gray900,
-    onSurface = white800
+    onSurface = white800,
+
 )
 
 @Composable
@@ -52,6 +53,12 @@ fun MySootheTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composab
         DarkColorPalette
     } else {
         LightColorPalette
+    }
+
+    val typography = if (darkTheme) {
+        darkTypography
+    } else {
+        lightTypography
     }
 
     MaterialTheme(

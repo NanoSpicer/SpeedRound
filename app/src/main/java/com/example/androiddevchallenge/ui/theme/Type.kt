@@ -35,8 +35,15 @@ val kulimParkRegular = Font(R.font.kulimpark_regular).toFontFamily()
 val latoBold = Font(R.font.lato_bold).toFontFamily()
 val latoRegular = Font(R.font.lato_regular).toFontFamily()
 // Set of Material typography styles to start with
-val typography = Typography(
+
+
+
+
+
+
+val lightTypography = Typography(
     h1 = TextStyle(
+        color = taupe800,
         fontFamily = kulimParkLight,
         fontWeight = FontWeight.Normal,
         fontSize = 28.sp,
@@ -56,6 +63,7 @@ val typography = Typography(
         letterSpacing = 0.sp,
     ),
     body1 = TextStyle(
+        color = gray800,
         fontFamily = latoRegular,
         fontWeight = FontWeight.Normal,
         fontSize = 14.sp,
@@ -74,6 +82,51 @@ val typography = Typography(
         letterSpacing = 1.15.sp,
     )
 )
+
+
+val darkTypography = Typography(
+    h1 = TextStyle(
+        color = taupe100,
+        fontFamily = kulimParkLight,
+        fontWeight = FontWeight.Normal,
+        fontSize = 28.sp,
+        letterSpacing = 1.15.sp
+    ),
+    // CAPS
+    h2 = TextStyle(
+        fontFamily = kulimParkRegular,
+        fontWeight = FontWeight.Normal,
+        fontSize = 15.sp,
+        letterSpacing = 1.15.sp,
+    ),
+    h3 = TextStyle(
+        fontFamily = latoBold,
+        fontWeight = FontWeight.Normal,
+        fontSize = 14.sp,
+        letterSpacing = 0.sp,
+    ),
+    body1 = TextStyle(
+        color = white800,
+        fontFamily = latoRegular,
+        fontWeight = FontWeight.Normal,
+        fontSize = 14.sp,
+        letterSpacing = 0.sp,
+    ),
+    caption = TextStyle(
+        fontFamily = FontFamily.Default,
+        fontWeight = FontWeight.Normal,
+        fontSize = 12.sp,
+        letterSpacing = 1.15.sp,
+    ),
+    button = TextStyle(
+        fontFamily = FontFamily.Default,
+        fontWeight = FontWeight.W500,
+        fontSize = 14.sp,
+        letterSpacing = 1.15.sp,
+    )
+)
+
+
 
 @Composable fun TextH1(modifier: Modifier = Modifier, text: String) = Text(modifier = modifier, text = text, style = MaterialTheme.typography.h1)
 @Composable fun TextH2(modifier: Modifier = Modifier, text: String) = Text(modifier = modifier, text = text.CAPS, style = MaterialTheme.typography.h2)
