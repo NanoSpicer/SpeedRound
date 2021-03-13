@@ -18,6 +18,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
@@ -56,28 +57,51 @@ fun SecondaryButton(modifier: Modifier = Modifier, text: String, onClick: () -> 
 
 
 @Composable
-fun MySootheTextField(modifier: Modifier = Modifier, label: String, defaultText: String = "", onTextChange: (String) -> Unit) {
+private fun MySootheTextField(
+    modifier: Modifier = Modifier,
+    label: String,
+    defaultText: String = "",
+    visualTransformation: VisualTransformation = VisualTransformation.None,
+    keyboardOptions: KeyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
+    onTextChange: (String) -> Unit
+) {
     var textVal by remember { mutableStateOf(defaultText) }
-    val colors = TextFieldDefaults.textFieldColors()
-    TextField(
-        modifier = modifier.height(56.dp).fillMaxWidth(),
-        textStyle = MaterialTheme.typography.body1,
-        placeholder = { TextBody1(text = label) },
-        value = textVal, onValueChange = { textVal = it; onTextChange(it) },
-        colors = colors
+    val colors = TextFieldDefaults.textFieldColors(
+        textColor = if(isSystemInDarkTheme()) white800 else gray800,
+        backgroundColor = if(isSystemInDarkTheme()) gray800 else white800
     )
-}
-
-@Composable
-fun MySoothePassword(modifier: Modifier = Modifier, label: String, defaultText: String = "", onTextChange: (String) -> Unit) {
-    var textVal by remember { mutableStateOf(defaultText) }
     TextField(
         modifier = modifier
             .height(56.dp)
             .fillMaxWidth(),
         textStyle = MaterialTheme.typography.body1,
-        label = { TextBody1(text = label)},
+        placeholder = { TextBody1(text = label) },
         value = textVal, onValueChange = { textVal = it; onTextChange(it) },
+        colors = colors,
+        visualTransformation = visualTransformation,
+        keyboardOptions = keyboardOptions
+    )
+}
+
+@Composable
+fun MySootheEmail(modifier: Modifier = Modifier, label: String, defaultText: String = "", onTextChange: (String) -> Unit) {
+    MySootheTextField(
+        modifier = modifier
+            .height(56.dp)
+            .fillMaxWidth(),
+        label = label,
+        onTextChange = { onTextChange(it) }
+    )
+}
+
+@Composable
+fun MySoothePassword(modifier: Modifier = Modifier, label: String, defaultText: String = "", onTextChange: (String) -> Unit) {
+    MySootheTextField(
+        modifier = modifier
+            .height(56.dp)
+            .fillMaxWidth(),
+        label = label,
+        onTextChange = { onTextChange(it) },
         visualTransformation = PasswordVisualTransformation(),
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
     )
